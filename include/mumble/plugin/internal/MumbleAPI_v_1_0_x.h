@@ -112,6 +112,19 @@ struct MumbleAPI_v_1_0_x {
 	mumble_error_t(PLUGIN_CALLING_CONVENTION *getUserName)(mumble_plugin_id_t callerID, mumble_connection_t connection,
 														   mumble_userid_t userID, const char **userName);
 
+	/// Gets information about the given user's state.
+	///
+	/// @param callerID The ID of the plugin calling this function
+	/// @param connection The ID of the server-connection to use as a context
+	/// @param userID The user's ID whose state should be obtained
+	/// @param[out] selfMuted A pointer to boolean to receive the user's self muted flag
+	/// @param[out] selfDeafened A pointer to boolean to receive the user's self deafened flag
+	/// @returns The error code. If everything went well, STATUS_OK will be returned.
+	mumble_error_t(PLUGIN_CALLING_CONVENTION *getUserMuteDeafState)(mumble_plugin_id_t callerID,
+																	mumble_connection_t connection,
+																	mumble_userid_t userID,
+																	mumble_mutedeaf_state_t *muteDeafState);
+
 	/// Fills in the information about the given channel's name.
 	///
 	/// @param callerID The ID of the plugin calling this function
@@ -125,6 +138,19 @@ struct MumbleAPI_v_1_0_x {
 	mumble_error_t(PLUGIN_CALLING_CONVENTION *getChannelName)(mumble_plugin_id_t callerID,
 															  mumble_connection_t connection,
 															  mumble_channelid_t channelID, const char **channelName);
+
+	/// Gets the ID of the parent channel of the given channel
+	///
+	/// @param callerID The ID of the plugin calling this function
+	/// @param connection The ID of the server-connection to use as a context
+	/// @param channelID The ID of the channel of which to get the parent channel ID
+	/// @param[out] A pointer to where the ID of the parent channel shall be written
+	/// @returns The error code. If everything went well, STATUS_OK will be returned. Only then the passed pointer
+	/// may be accessed
+	mumble_error_t(PLUGIN_CALLING_CONVENTION *getParentChannelID)(mumble_plugin_id_t callerID,
+																  mumble_connection_t connection,
+																  mumble_channelid_t channelID,
+																  mumble_channelid_t *parentChannelID);
 
 	/// Gets an array of all users that are currently connected to the provided server. Passing a nullptr as any of the
 	/// out-parameter will prevent that property to be set/allocated. If you are only interested in the user count you

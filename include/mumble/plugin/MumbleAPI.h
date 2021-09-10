@@ -49,7 +49,9 @@ public:
 	bool isConnectionSynchronized(mumble_connection_t connection) const;
 	mumble_userid_t getLocalUserID(mumble_connection_t connection) const;
 	MumbleString getUserName(mumble_connection_t connection, mumble_userid_t userID) const;
+	mumble_mutedeaf_state_t getUserMuteDeafState(mumble_connection_t connection, mumble_userid_t userID) const;
 	MumbleString getChannelName(mumble_connection_t connection, mumble_channelid_t channelID) const;
+	mumble_channelid_t getParentChannelID(mumble_connection_t connection, mumble_channelid_t channelID) const;
 	MumbleArray< mumble_userid_t > getAllUsers(mumble_connection_t connection) const;
 	MumbleArray< mumble_channelid_t > getAllChannels(mumble_connection_t connection) const;
 	mumble_channelid_t getChannelOfUser(mumble_connection_t connection, mumble_userid_t userID) const;

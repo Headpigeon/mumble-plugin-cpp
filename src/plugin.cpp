@@ -103,6 +103,12 @@ PLUGIN_EXPORT void PLUGIN_CALLING_CONVENTION mumble_onChannelExited(mumble_conne
 	MumblePlugin::getPlugin().onChannelExited(connection, userID, channelID);
 }
 
+PLUGIN_EXPORT void PLUGIN_CALLING_CONVENTION mumble_onUserMuteDeafStateChanged(mumble_connection_t connection,
+																			   mumble_userid_t userID,
+																			   mumble_mutedeaf_state_t muteDeafState) {
+	MumblePlugin::getPlugin().onUserMuteDeafStateChanged(connection, userID, muteDeafState);
+}
+
 PLUGIN_EXPORT void PLUGIN_CALLING_CONVENTION mumble_onUserTalkingStateChanged(mumble_connection_t connection,
 																			  mumble_userid_t userID,
 																			  mumble_talking_state_t talkingState) {

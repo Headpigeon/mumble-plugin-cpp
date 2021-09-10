@@ -170,6 +170,13 @@ void MumblePlugin::onChannelExited(mumble_connection_t connection, mumble_userid
 	UNUSED(channelID);
 }
 
+void MumblePlugin::onUserMuteDeafStateChanged(mumble_connection_t connection, mumble_userid_t userID,
+											  mumble_mutedeaf_state_t muteDeafState) noexcept {
+	UNUSED(connection);
+	UNUSED(userID);
+	UNUSED(muteDeafState);
+}
+
 void MumblePlugin::onUserTalkingStateChanged(mumble_connection_t connection, mumble_userid_t userID,
 											 mumble_talking_state_t talkingState) noexcept {
 	UNUSED(connection);

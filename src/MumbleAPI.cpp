@@ -83,6 +83,15 @@ MumbleString MumbleAPI::getUserName(mumble_connection_t connection, mumble_useri
 	return MumbleString(WRAP_RESOURCE(const char, namePtr), size);
 }
 
+mumble_mutedeaf_state_t MumbleAPI::getUserMuteDeafState(mumble_connection_t connection, mumble_userid_t userID) const {
+	mumble_mutedeaf_state_t muteDeafState;
+	mumble_error_t errorCode = m_apiStruct.getUserMuteDeafState(m_pluginID, connection, userID, &muteDeafState);
+
+	HANDLE_ERROR(errorCode, getUserMuteDeafState);
+
+	return muteDeafState;
+}
+
 MumbleString MumbleAPI::getChannelName(mumble_connection_t connection, mumble_channelid_t channelID) const {
 	const char *namePtr;
 	mumble_error_t errorCode = m_apiStruct.getChannelName(m_pluginID, connection, channelID, &namePtr);
@@ -92,6 +101,16 @@ MumbleString MumbleAPI::getChannelName(mumble_connection_t connection, mumble_ch
 	std::size_t size = std::strlen(namePtr);
 
 	return MumbleString(WRAP_RESOURCE(const char, namePtr), size);
+}
+
+mumble_channelid_t MumbleAPI::getParentChannelID(mumble_connection_t connection, mumble_channelid_t channelID) const {
+	mumble_channelid_t parentChannelID;
+
+	mumble_error_t errorCode = m_apiStruct.getParentChannelID(m_pluginID, connection, channelID, &parentChannelID);
+
+	HANDLE_ERROR(errorCode, getParentChannelID);
+
+	return parentChannelID;
 }
 
 MumbleArray< mumble_userid_t > MumbleAPI::getAllUsers(mumble_connection_t connection) const {

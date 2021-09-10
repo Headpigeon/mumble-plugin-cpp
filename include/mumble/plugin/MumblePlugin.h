@@ -70,6 +70,8 @@ public:
 								  mumble_channelid_t previousChannelID, mumble_channelid_t newChannelID) noexcept;
 	virtual void onChannelExited(mumble_connection_t connection, mumble_userid_t userID,
 								 mumble_channelid_t channelID) noexcept;
+	virtual void onUserMuteDeafStateChanged(mumble_connection_t connection, mumble_userid_t userID,
+											mumble_mutedeaf_state_t userMuteDeafState) noexcept;
 	virtual void onUserTalkingStateChanged(mumble_connection_t connection, mumble_userid_t userID,
 										   mumble_talking_state_t talkingState) noexcept;
 	virtual void onUserAdded(mumble_connection_t connection, mumble_userid_t userID) noexcept;

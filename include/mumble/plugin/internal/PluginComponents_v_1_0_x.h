@@ -236,6 +236,28 @@ enum Mumble_KeyCode {
 	MUMBLE_KC_F19 = 274,
 };
 
+/// The bits of the user mute deaf state's flags
+enum Mumble_UserStateFlag {
+	/// User has been muted by third party (admin)
+	MDS_MUTE = 1 << 0,
+	/// User has been deafened by third party (admin)
+	MDS_DEAF = 1 << 2,
+	/// User has been suppressed
+	MDS_SUPPRESS = 1 << 3,
+	/// User has muted themself
+	MDS_SELF_MUTE = 1 << 4,
+	/// User has deafened themself
+	MDS_SELF_DEAF = 1 << 5,
+	/// User has been locally muted
+	MDS_LOCAL_MUTE = 1 << 6,
+	/// User has been locally muted
+	MDS_LOCAL_IGNORE = 1 << 7,
+	/// User is a priority speaker
+	MDS_PRIORITY_SPEAKER = 1 << 8,
+	/// User is recording
+	MDS_RECORDING = 1 << 9,
+};
+
 /// A struct for representing a version of the form major.minor.patch
 struct MumbleVersion {
 	int32_t major;
@@ -398,6 +420,8 @@ typedef uint32_t mumble_plugin_id_t;
 typedef enum Mumble_SettingsKey mumble_settings_key_t;
 /// Typedef for the type of a key-code
 typedef enum Mumble_KeyCode mumble_keycode_t;
+/// Typedef for the type of a mumble user state flag
+typedef uint32_t mumble_mutedeaf_state_t;
 
 
 
